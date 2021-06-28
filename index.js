@@ -1,4 +1,5 @@
 
+
 // Button press detection
 
 var numberOfDrumButtons = document.querySelectorAll(".drum").length;
@@ -9,12 +10,14 @@ for (var i = 0;i < numberOfDrumButtons;i++) {
         var buttonInnerHTML = this.innerHTML;
         
         makeSound(buttonInnerHTML);
+        buttonAnimation(buttonInnerHTML);
     });
 }
 
 
 document.addEventListener('keypress', function (event) {
     makeSound(event.key);
+    buttonAnimation(event.key);
 })
 
 // Keyboard press detection
@@ -60,4 +63,13 @@ function makeSound(key) {
             console.log("While using keyboard please press those keys which are shown on the screen");
                 break;
         }
+}
+
+function buttonAnimation(currentKey) {
+    var activeButton = document.querySelector("."+ currentKey);
+    activeButton.classList.add("pressed"); 
+    setTimeout(() => {
+    activeButton.classList.remove("pressed");    
+    }, 100);
+    
 }
